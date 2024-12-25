@@ -108,7 +108,7 @@ class IPAdapterFluxLoader:
     def INPUT_TYPES(s):
         return {"required": {
                 "ipadapter": (folder_paths.get_filename_list("ipadapter"),),
-                "clip_vision": (["google/siglip-so400m-patch14-384"],),
+                "clip_vision": (folder_paths.get_filename_list("clip_vision"),),
                 "provider": (["cuda", "cpu", "mps"],),
             }
         }
