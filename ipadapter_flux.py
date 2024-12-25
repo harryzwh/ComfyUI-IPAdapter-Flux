@@ -8,12 +8,12 @@ import numpy as np
 from .attention_processor import IPAFluxAttnProcessor2_0
 from .utils import is_model_patched, FluxUpdateModules
 
-MODELS_DIR = os.path.join(folder_paths.models_dir, "ipadapter-flux")
-if "ipadapter-flux" not in folder_paths.folder_names_and_paths:
+MODELS_DIR = os.path.join(folder_paths.models_dir, "ipadapter")
+if "ipadapter" not in folder_paths.folder_names_and_paths:
     current_paths = [MODELS_DIR]
 else:
-    current_paths, _ = folder_paths.folder_names_and_paths["ipadapter-flux"]
-folder_paths.folder_names_and_paths["ipadapter-flux"] = (current_paths, folder_paths.supported_pt_extensions)
+    current_paths, _ = folder_paths.folder_names_and_paths["ipadapter"]
+folder_paths.folder_names_and_paths["ipadapter"] = (current_paths, folder_paths.supported_pt_extensions)
 
 class MLPProjModel(torch.nn.Module):
     def __init__(self, cross_attention_dim=768, id_embeddings_dim=512, num_tokens=4):
@@ -107,7 +107,7 @@ class IPAdapterFluxLoader:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": {
-                "ipadapter": (folder_paths.get_filename_list("ipadapter-flux"),),
+                "ipadapter": (folder_paths.get_filename_list("ipadapter"),),
                 "clip_vision": (["google/siglip-so400m-patch14-384"],),
                 "provider": (["cuda", "cpu", "mps"],),
             }
