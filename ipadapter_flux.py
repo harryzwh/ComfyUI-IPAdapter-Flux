@@ -38,7 +38,7 @@ class MLPProjModel(torch.nn.Module):
 class InstantXFluxIPAdapterModel:
     def __init__(self, image_encoder_path, ip_ckpt, device, num_tokens=4):
         self.device = device
-        self.image_encoder_path = image_encoder_path
+        self.image_encoder_path = os.path.join(folder_paths.models_dir, "clip_vision", image_encoder_path)
         self.ip_ckpt = ip_ckpt
         self.num_tokens = num_tokens
         # load image encoder
@@ -108,7 +108,7 @@ class IPAdapterFluxLoader:
     def INPUT_TYPES(s):
         return {"required": {
                 "ipadapter": (folder_paths.get_filename_list("ipadapter-flux"),),
-                "clip_vision": (["google/siglip-so400m-patch14-384"],),
+                "clip_vision": (["google-siglip-so400m-patch14-384"],),
                 "provider": (["cuda", "cpu", "mps"],),
             }
         }
